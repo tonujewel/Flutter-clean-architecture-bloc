@@ -1,6 +1,6 @@
-import 'package:clean_architecute_bloc/features/authentication/domain/entities/user_data.dart';
-import 'package:clean_architecute_bloc/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:clean_architecute_bloc/features/authentication/domain/usecases/get_users.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/entities/user_data.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/repositories/authentication_repository.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/usecases/get_users.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

@@ -2,8 +2,8 @@
 // how can we create a fake version of the dependency
 // how we control what our dependencies do
 
-import 'package:clean_architecute_bloc/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:clean_architecute_bloc/features/authentication/domain/usecases/create_user.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/repositories/authentication_repository.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/usecases/create_user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

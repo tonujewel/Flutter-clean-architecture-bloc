@@ -1,15 +1,15 @@
 import 'package:clean_architecute_bloc/core/errors/exceptions.dart';
 import 'package:clean_architecute_bloc/core/errors/failure.dart';
 import 'package:clean_architecute_bloc/core/utils/typedef.dart';
-import 'package:clean_architecute_bloc/features/authentication/data/datasources/authentication_remote_data_source.dart';
-import 'package:clean_architecute_bloc/features/authentication/domain/entities/user_data.dart';
-import 'package:clean_architecute_bloc/features/authentication/domain/repositories/authentication_repository.dart';
+import 'package:clean_architecute_bloc/features/auth/data/datasources/auth_remote_data_src.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/entities/user_data.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/repositories/authentication_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   const AuthenticationRepositoryImpl(this._remoteDataSource);
 
-  final AuthenticationRemoteDataSource _remoteDataSource;
+  final AuthRemoteDataSrc _remoteDataSource;
 
   @override
   ResultVoid createUser({

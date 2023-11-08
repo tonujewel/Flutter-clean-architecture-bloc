@@ -1,5 +1,5 @@
 import 'package:clean_architecute_bloc/core/utils/typedef.dart';
-import 'package:clean_architecute_bloc/features/authentication/domain/entities/user_data.dart';
+import 'package:clean_architecute_bloc/features/auth/domain/entities/user_data.dart';
 
 abstract class AuthenticationRepository {
   const AuthenticationRepository();
