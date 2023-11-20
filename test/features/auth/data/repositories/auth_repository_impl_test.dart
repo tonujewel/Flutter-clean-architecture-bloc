@@ -20,7 +20,7 @@ void main() {
 
   const tException = ApiException(
     message: "Unknow error occure",
-    statusCode: "500",
+    statusCode: 500,
   );
 
   const createdAt = "whatever.createdAt";
