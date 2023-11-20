@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:clean_architecute_bloc/core/errors/exceptions.dart';
 import 'package:clean_architecute_bloc/core/utils/constant.dart';
+import 'package:clean_architecute_bloc/core/utils/typedef.dart';
 
 import '../models/user_model.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +50,12 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
 
   @override
   Future<List<UserModel>> getUsers() async {
-    // TODO: implement getUsers
-    throw UnimplementedError();
+    final result = await _client.get(Uri.parse(kBaseUrl + kGetUsersEndPoint));
+
+    log("message ${result.toString()}");
+
+    return List<DataMap>.from(jsonDecode(result.body) as List)
+        .map((userData) => UserModel.fromMap(userData))
+        .toList();
   }
 }
