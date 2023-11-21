@@ -51,7 +51,7 @@ void main() {
       final methodCall = remoteDataSrc.createUser;
 
       expect(
-          methodCall(createdAt: "createdAt", name: "name", avatar: "avatar"),
+          () => methodCall(createdAt: "createdAt", name: "name", avatar: "avatar"),
           throwsA(
             const ApiException(message: "User creation failed", statusCode: 505),
           ));
@@ -82,6 +82,25 @@ void main() {
         () => client.get(Uri.parse(kBaseUrl + kGetUsersEndPoint)),
       ).called(1);
 
+      verifyNoMoreInteractions(client);
+    });
+
+    test("should throw [APIException] when status code is not 200", () async {
+      const tMsg = "Server Down";
+      when(() => client.get(any())).thenAnswer(
+        (_) async => http.Response(tMsg, 500),
+      );
+
+      final methodCall = remoteDataSrc.getUsers;
+
+      expect(
+        methodCall,
+        throwsA(
+          const ApiException(message: tMsg, statusCode: 500),
+        ),
+      );
+
+      verify(() => client.get(Uri.parse(kBaseUrl + kGetUsersEndPoint))).called(1);
       verifyNoMoreInteractions(client);
     });
   });

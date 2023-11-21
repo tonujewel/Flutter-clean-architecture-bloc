@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:clean_architecute_bloc/core/errors/exceptions.dart';
 import 'package:clean_architecute_bloc/core/utils/constant.dart';
@@ -44,18 +43,26 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
         throw ApiException(message: response.body, statusCode: response.statusCode);
       }
     } catch (e) {
-      throw ApiException(message: e.toString(), statusCode: 505);
+      throw const ApiException(message: "User creation failed", statusCode: 505);
     }
   }
 
   @override
   Future<List<UserModel>> getUsers() async {
-    final result = await _client.get(Uri.parse(kBaseUrl + kGetUsersEndPoint));
+    try {
+      final result = await _client.get(Uri.parse(kBaseUrl + kGetUsersEndPoint));
 
-    log("message ${result.toString()}");
+      if (result.statusCode != 200) {
+        throw ApiException(message: result.body, statusCode: result.statusCode);
+      }
 
-    return List<DataMap>.from(jsonDecode(result.body) as List)
-        .map((userData) => UserModel.fromMap(userData))
-        .toList();
+      return List<DataMap>.from(jsonDecode(result.body) as List)
+          .map((userData) => UserModel.fromMap(userData))
+          .toList();
+    } on ApiException {
+      rethrow;
+    } catch (e) {
+      throw ApiException(message: e.toString(), statusCode: 505);
+    }
   }
 }
