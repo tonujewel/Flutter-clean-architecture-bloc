@@ -32,12 +32,15 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     // check to make sure that it "THROWS A CUSTOM EXCEPTION" with the right msg when status code the bad one.
 
     try {
-      final response = await _client.post(
-        Uri.parse("$kBaseUrl$kCreateUserEndPoint"),
-        body: jsonEncode(
-          {"createdAt": createdAt, "name": name, "avatar": avatar},
-        ),
-      );
+      final response = await _client.post(Uri.parse("$kBaseUrl$kCreateUserEndPoint"),
+          body: jsonEncode(
+            {
+              "createdAt": createdAt,
+              "name": name,
+              // "avatar": avatar,
+            },
+          ),
+          headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw ApiException(message: response.body, statusCode: response.statusCode);
