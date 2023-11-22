@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
   final CreateUser _createUser;
   final GetUsers _getUsers;
 
-  Future<void> createUsern(
+  Future<void> createUser(
       {required String createdAt, required String name, required String avatar}) async {
     emit(const CreatingUserState());
     final result = await _createUser(CreateUserParams(
